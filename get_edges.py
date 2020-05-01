@@ -34,7 +34,7 @@ def dead_end(data):
 
 # 核心函数
 def block_stripe_pagerank(A, r, w, beta):
-    # A：原始数据集，
+    # A：原始数据集，r为迭代次数，w为dead_end标签，beta:阻尼系数
     global NUM
     v_new = np.ones(NUM) * 1 / NUM  # 初始值
     v_old = v_new
@@ -77,8 +77,8 @@ def block_stripe_pagerank(A, r, w, beta):
     return rank, v_new
 
 
-def write_data(node_id, score):
-    f = open('./result.txt', 'w')
+def write_data(node_id, score, beta):
+    f = open(str(beta) + 'result.txt', 'w')
     for i in range(100):
         f.write(str(node_id[i] + 1) + ' ' + str(score[node_id[i]]) + '\n')
     f.close()
@@ -94,4 +94,4 @@ if __name__ == '__main__':
     rank, re = block_stripe_pagerank(data, r, dead_flag, beta)
     re = re / np.sum(re)
     index = np.argsort(-re)
-    write_data(index, re)
+    write_data(index, re, beta)
