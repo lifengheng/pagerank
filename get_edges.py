@@ -11,10 +11,12 @@ def load_data(f):
     edges = readtxt[:, :]
     # 从小到大排序，目的是让相同起点聚集在一起
     edges=sorted(edges, key=(lambda x: x[0]))
+
     global NUM
     NUM = np.max(edges)
     # 使下标与节点ID相同
     edges = list(map(lambda x:x-1,edges))
+
     # 返回值为排序后的数据
     return edges
 

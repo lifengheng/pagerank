@@ -76,3 +76,23 @@ R_{new}=d(MR_{old})+[1-d*sum]_{n*1}
 $$
 这里的sum是$MR_{old}$各元素的求和。这样就保证了在迭代过程中R各元素之和始终为1。
 
+先进行检查是否存在dead end
+
+```
+def dead_end(data):
+    # data为所有数据
+    global NUM
+    dead_flag = np.zeros(NUM)
+    # 若数据的起点没有该节点，则为0
+    for d in data:
+        dead_flag[d[0]] = 1
+    # 返回值为一个01数组，0为dead_end
+    return dead_flag
+```
+
+
+
+### 解决稀疏矩阵
+
+对于互联网上的大多数网页，相互有联系的网页其实很少，因此采用矩阵存储十分浪费空间。解决稀疏矩阵的一个办法是用链表来存储，可以将$O(n^2)$的存储开销降为$O(kn)$，对于规模上亿的情况，提升的效果很可观。在python中
+
