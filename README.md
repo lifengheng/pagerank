@@ -1,4 +1,4 @@
-# pagerank
+# pagerank（.exe在dist下）
 
 ## 算法背景
 
