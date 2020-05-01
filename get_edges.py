@@ -2,7 +2,8 @@ import numpy as np
 
 f = 'WikiData.txt'
 global NUM
-NUM=0
+NUM = 0
+
 
 # 加载数据
 def load_data(f):
@@ -10,11 +11,11 @@ def load_data(f):
     readtxt = np.loadtxt(open(f), dtype=int)
     edges = readtxt[:, :]
     # 从小到大排序，目的是让相同起点聚集在一起
-    edges=sorted(edges, key=(lambda x: x[0]))
+    edges = sorted(edges, key=(lambda x: x[0]))
     global NUM
     NUM = np.max(edges)
     # 使下标与节点ID相同
-    edges = list(map(lambda x:x-1,edges))
+    edges = list(map(lambda x: x - 1, edges))
     # 返回值为排序后的数据
     return edges
 
@@ -89,7 +90,7 @@ if __name__ == '__main__':
     dead_flag = dead_end(data)
     r = 100
     beta = input("please input β：")
-    beta=float(beta)
+    beta = float(beta)
     rank, re = block_stripe_pagerank(data, r, dead_flag, beta)
     re = re / np.sum(re)
     index = np.argsort(-re)
